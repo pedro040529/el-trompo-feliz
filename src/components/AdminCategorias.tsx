@@ -45,14 +45,14 @@ export default function AdminCategorias({ categorias }: { categorias: CategoriaD
           <label className={etiqueta} htmlFor="descripcion">Descripción (opcional)</label>
           <input id="descripcion" name="descripcion" defaultValue={editando?.descripcion} className={input} />
         </div>
-        {error && <p className="text-sm font-semibold text-red-600" role="alert">{error}</p>}
+        {error && <p className="text-sm font-semibold text-rose-600" role="alert">{error}</p>}
         <div className="flex gap-2">
           <button className={btn} disabled={cargando}>{editando ? "Guardar cambios" : "Crear categoría"}</button>
           {editando && <button type="button" className={btnSec} onClick={() => { setEditando(null); setError(""); }}>Cancelar</button>}
         </div>
       </form>
       <div className={`${card} p-0`}>
-        <ul className="divide-y divide-amber-100">
+        <ul className="divide-y divide-crema-100">
           {categorias.length === 0 && <li className="p-6 text-center text-gray-500">Aún no hay categorías.</li>}
           {categorias.map((c) => (
             <li key={c.id} className="flex items-center justify-between gap-3 p-4">
@@ -62,7 +62,7 @@ export default function AdminCategorias({ categorias }: { categorias: CategoriaD
               </div>
               <div className="flex gap-3 text-sm font-semibold">
                 <button className="text-sky-700 hover:underline" onClick={() => { setEditando(c); setError(""); }}>Editar</button>
-                <button className="text-red-600 hover:underline" onClick={() => eliminar(c)}>Eliminar</button>
+                <button className="text-marca-600 hover:underline" onClick={() => eliminar(c)}>Eliminar</button>
               </div>
             </li>
           ))}

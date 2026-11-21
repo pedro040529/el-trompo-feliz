@@ -50,16 +50,16 @@ export default function CarritoCliente({ inicial }: { inicial: CarritoDTO }) {
     <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
       <div className="space-y-3">
         {carrito.items.map((i) => (
-          <div key={i.jugueteId} className={`${card} flex gap-4 ${i.disponible ? "" : "border-red-300 bg-red-50"}`}>
+          <div key={i.jugueteId} className={`${card} flex gap-4 ${i.disponible ? "" : "border-rose-300 bg-rose-50"}`}>
             <div className="w-24 shrink-0"><ImagenJuguete url={i.imagenUrl} nombre={i.nombre} /></div>
             <div className="flex flex-1 flex-col gap-2">
               <div className="flex justify-between gap-2">
-                <Link href={`/juguetes/${i.jugueteId}`} className="font-bold hover:text-red-600">{i.nombre}</Link>
-                <span className="font-extrabold text-red-600">{formatoPrecio(i.subtotal)}</span>
+                <Link href={`/juguetes/${i.jugueteId}`} className="font-bold hover:text-marca-600">{i.nombre}</Link>
+                <span className="font-extrabold text-marca-600">{formatoPrecio(i.subtotal)}</span>
               </div>
               <span className="text-sm text-gray-500">{formatoPrecio(i.precioUnitario)} c/u</span>
               {!i.disponible && (
-                <p className="text-sm font-semibold text-red-600" role="alert">
+                <p className="text-sm font-semibold text-rose-600" role="alert">
                   {i.stock === 0 ? "Este juguete se agotó. Quítalo para continuar." : `Solo quedan ${i.stock}. Ajusta la cantidad para continuar.`}
                 </p>
               )}
@@ -67,7 +67,7 @@ export default function CarritoCliente({ inicial }: { inicial: CarritoDTO }) {
                 <button className={btnSec} disabled={ocupado === i.jugueteId || i.cantidad <= 1} onClick={() => actualizar(i.jugueteId, i.cantidad - 1)} aria-label="Disminuir cantidad">−</button>
                 <span className="w-8 text-center font-bold">{i.cantidad}</span>
                 <button className={btnSec} disabled={ocupado === i.jugueteId || i.cantidad >= i.stock} onClick={() => actualizar(i.jugueteId, i.cantidad + 1)} aria-label="Aumentar cantidad">+</button>
-                <button className="ml-auto text-sm font-semibold text-red-600 hover:underline" disabled={ocupado === i.jugueteId} onClick={() => quitar(i.jugueteId)}>Quitar</button>
+                <button className="ml-auto text-sm font-semibold text-marca-600 hover:underline" disabled={ocupado === i.jugueteId} onClick={() => quitar(i.jugueteId)}>Quitar</button>
               </div>
             </div>
           </div>
@@ -76,10 +76,10 @@ export default function CarritoCliente({ inicial }: { inicial: CarritoDTO }) {
       <aside className={`${card} h-fit space-y-3`}>
         <h2 className="text-lg font-extrabold">Resumen</h2>
         <div className="flex justify-between text-sm"><span>Productos ({carrito.cantidadTotal})</span><span>{formatoPrecio(carrito.total)}</span></div>
-        <div className="flex justify-between border-t border-amber-100 pt-3 text-lg font-extrabold"><span>Total</span><span className="text-red-600">{formatoPrecio(carrito.total)}</span></div>
-        {error && <p className="text-sm font-semibold text-red-600" role="alert">{error}</p>}
+        <div className="flex justify-between border-t border-crema-100 pt-3 text-lg font-extrabold"><span>Total</span><span className="text-marca-600">{formatoPrecio(carrito.total)}</span></div>
+        {error && <p className="text-sm font-semibold text-rose-600" role="alert">{error}</p>}
         {carrito.hayProblemas ? (
-          <p className="text-sm font-semibold text-red-600">Resuelve los productos marcados para continuar.</p>
+          <p className="text-sm font-semibold text-rose-600">Resuelve los productos marcados para continuar.</p>
         ) : (
           <Link href="/checkout" className={`${btn} w-full`}>Continuar con la compra</Link>
         )}

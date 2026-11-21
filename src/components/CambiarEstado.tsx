@@ -28,7 +28,7 @@ export default function CambiarEstado({ id, estado }: { id: string; estado: Esta
         {cargando ? "Actualizando…" : `Marcar como ${ETIQUETA_ESTADO[siguiente].toLowerCase()}`}
       </button>
       {siguiente === "PAGADO" && <p className="text-xs text-gray-500">Al marcarlo como pagado se descuenta el stock y se vacía el carrito del cliente.</p>}
-      {error && <p className="text-sm font-semibold text-red-600" role="alert">{error}</p>}
+      {error && <p className="text-sm font-semibold text-rose-600" role="alert">{error}</p>}
     </div>
   );
 }

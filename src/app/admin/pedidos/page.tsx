@@ -7,7 +7,7 @@ import { ServicioPedidos } from "@/services/ServicioPedidos";
 export default async function AdminPedidos({ searchParams }: { searchParams: Promise<{ estado?: string }> }) {
   const { estado } = await searchParams;
   const pedidos = await ServicioPedidos.listarTodos(estado);
-  const chip = (activo: boolean) => `rounded-full px-3 py-1 text-sm font-semibold ${activo ? "bg-red-500 text-white" : "bg-white text-gray-700 hover:bg-amber-100"} border border-amber-200`;
+  const chip = (activo: boolean) => `rounded-full px-3 py-1 text-sm font-semibold ${activo ? "bg-marca-500 text-white" : "bg-white text-gray-700 hover:bg-crema-100"} border border-crema-200`;
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-extrabold">Pedidos</h1>
@@ -17,10 +17,10 @@ export default async function AdminPedidos({ searchParams }: { searchParams: Pro
       </div>
       <div className={`${card} overflow-x-auto p-0`}>
         <table className="w-full text-left text-sm">
-          <thead className="bg-amber-100 text-xs uppercase text-gray-600">
+          <thead className="bg-crema-100 text-xs uppercase text-gray-600">
             <tr><th className="p-3">Pedido</th><th className="p-3">Fecha</th><th className="p-3">Cliente</th><th className="p-3">Total</th><th className="p-3">Estado</th><th className="p-3" /></tr>
           </thead>
-          <tbody className="divide-y divide-amber-100">
+          <tbody className="divide-y divide-crema-100">
             {pedidos.length === 0 && <tr><td colSpan={6} className="p-6 text-center text-gray-500">No hay pedidos.</td></tr>}
             {pedidos.map((p) => (
               <tr key={p.id}>

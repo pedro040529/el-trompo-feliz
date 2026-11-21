@@ -19,13 +19,13 @@ export default async function AdminJuguetes({ searchParams }: { searchParams: Pr
       </form>
       <div className={`${card} overflow-x-auto p-0`}>
         <table className="w-full text-left text-sm">
-          <thead className="bg-amber-100 text-xs uppercase text-gray-600">
+          <thead className="bg-crema-100 text-xs uppercase text-gray-600">
             <tr><th className="p-3">Juguete</th><th className="p-3">Categoría</th><th className="p-3">Edad</th><th className="p-3">Precio</th><th className="p-3">Stock</th><th className="p-3" /></tr>
           </thead>
-          <tbody className="divide-y divide-amber-100">
+          <tbody className="divide-y divide-crema-100">
             {juguetes.length === 0 && <tr><td colSpan={6} className="p-6 text-center text-gray-500">No hay juguetes registrados.</td></tr>}
             {juguetes.map((j) => (
-              <tr key={j.id} className={j.stock <= STOCK_BAJO ? "bg-amber-50" : ""}>
+              <tr key={j.id} className={j.stock <= STOCK_BAJO ? "bg-crema-50" : ""}>
                 <td className="p-3 font-semibold">{j.nombre}</td>
                 <td className="p-3">{j.categoria?.nombre ?? "—"}</td>
                 <td className="p-3">{textoEdad(j.edadMinima, j.edadMaxima)}</td>

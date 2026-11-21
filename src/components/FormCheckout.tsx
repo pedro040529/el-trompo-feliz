@@ -55,7 +55,7 @@ export default function FormCheckout({ nombre, telefono, direccion }: { nombre: 
           <input id="referencia" name="referencia" className={input} />
         </div>
       </div>
-      {error && <p className="text-sm font-semibold text-red-600" role="alert">{error}</p>}
+      {error && <p className="text-sm font-semibold text-rose-600" role="alert">{error}</p>}
       <button className={btn} disabled={cargando}>{cargando ? "Redirigiendo a pago…" : "Pagar con tarjeta"}</button>
     </form>
   );

@@ -30,7 +30,7 @@ export default async function MisPedidos() {
               </div>
               <div className="flex items-center gap-4">
                 <InsigniaEstado estado={p.estado} />
-                <span className="font-extrabold text-red-600">{formatoPrecio(p.total)}</span>
+                <span className="font-extrabold text-marca-600">{formatoPrecio(p.total)}</span>
               </div>
             </Link>
           ))}

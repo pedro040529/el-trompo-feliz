@@ -37,7 +37,7 @@ export function FormLogin({ siguiente }: { siguiente?: string }) {
         <label className={etiqueta} htmlFor="password">Contraseña</label>
         <input id="password" name="password" type="password" required autoComplete="current-password" className={input} />
       </div>
-      {error && <p className="text-sm font-semibold text-red-600" role="alert">{error}</p>}
+      {error && <p className="text-sm font-semibold text-rose-600" role="alert">{error}</p>}
       <button className={`${btn} w-full`} disabled={cargando}>{cargando ? "Ingresando…" : "Ingresar"}</button>
       <p className="text-center text-sm text-gray-600">
         <Link href="/recuperar" className="font-semibold text-sky-700 hover:underline">¿Olvidaste tu contraseña?</Link>
@@ -89,7 +89,7 @@ export function FormRegistro() {
         <label className={etiqueta} htmlFor="password">Contraseña (mínimo 8 caracteres)</label>
         <input id="password" name="password" type="password" required minLength={8} autoComplete="new-password" className={input} />
       </div>
-      {error && <p className="text-sm font-semibold text-red-600" role="alert">{error}</p>}
+      {error && <p className="text-sm font-semibold text-rose-600" role="alert">{error}</p>}
       <button className={`${btn} w-full`} disabled={cargando}>{cargando ? "Creando…" : "Registrarme"}</button>
       <p className="text-center text-sm text-gray-600">
         ¿Ya tienes cuenta? <Link href="/login" className="font-semibold text-sky-700 hover:underline">Inicia sesión</Link>
@@ -124,10 +124,10 @@ export function FormRecuperar() {
         <label className={etiqueta} htmlFor="correo">Correo</label>
         <input id="correo" name="correo" type="email" required className={input} />
       </div>
-      {error && <p className="text-sm font-semibold text-red-600" role="alert">{error}</p>}
+      {error && <p className="text-sm font-semibold text-rose-600" role="alert">{error}</p>}
       {mensaje && <p className="text-sm font-semibold text-green-700" role="status">{mensaje}</p>}
       {enlace && (
-        <p className="rounded-xl bg-amber-50 p-3 text-xs text-gray-700">
+        <p className="rounded-xl bg-crema-50 p-3 text-xs text-gray-700">
           Modo desarrollo (aún no hay envío de correos): <Link href={enlace} className="font-bold text-sky-700 underline">abrir enlace de restablecimiento</Link>
         </p>
       )}
@@ -161,7 +161,7 @@ export function FormRestablecer({ token }: { token: string }) {
         <label className={etiqueta} htmlFor="password">Nueva contraseña (mínimo 8 caracteres)</label>
         <input id="password" name="password" type="password" required minLength={8} autoComplete="new-password" className={input} />
       </div>
-      {error && <p className="text-sm font-semibold text-red-600" role="alert">{error}</p>}
+      {error && <p className="text-sm font-semibold text-rose-600" role="alert">{error}</p>}
       {listo && <p className="text-sm font-semibold text-green-700" role="status">Contraseña actualizada. Redirigiendo al inicio de sesión…</p>}
       <button className={`${btn} w-full`} disabled={cargando || listo}>{cargando ? "Guardando…" : "Guardar contraseña"}</button>
     </form>

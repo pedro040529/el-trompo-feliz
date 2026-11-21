@@ -27,7 +27,7 @@ export default function StockInline({ id, stock }: { id: string; stock: number }
       <input type="number" min={0} value={valor} onChange={(e) => { setValor(e.target.value); setEstado(""); }} className={`${input} w-20`} aria-label="Stock" />
       <button className={btnSec} onClick={guardar} disabled={estado === "guardando" || valor === String(stock)}>Guardar</button>
       {estado === "ok" && <span className="text-xs font-semibold text-green-700">✓</span>}
-      {estado === "error" && <span className="text-xs font-semibold text-red-600">{msg}</span>}
+      {estado === "error" && <span className="text-xs font-semibold text-marca-600">{msg}</span>}
     </div>
   );
 }

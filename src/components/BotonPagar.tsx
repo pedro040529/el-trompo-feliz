@@ -24,7 +24,7 @@ export default function BotonPagar({ pedidoId }: { pedidoId: string }) {
       <button onClick={pagar} className={btn} disabled={cargando}>
         {cargando ? "Redirigiendo…" : "Pagar ahora"}
       </button>
-      {error && <p className="mt-2 text-sm font-semibold text-red-600" role="alert">{error}</p>}
+      {error && <p className="mt-2 text-sm font-semibold text-rose-600" role="alert">{error}</p>}
     </div>
   );
 }

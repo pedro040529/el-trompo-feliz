@@ -30,8 +30,8 @@ export default async function Checkout() {
               <span>{formatoPrecio(i.subtotal)}</span>
             </div>
           ))}
-          <div className="flex justify-between border-t border-amber-100 pt-2 text-lg font-extrabold">
-            <span>Total</span><span className="text-red-600">{formatoPrecio(carrito.total)}</span>
+          <div className="flex justify-between border-t border-crema-100 pt-2 text-lg font-extrabold">
+            <span>Total</span><span className="text-marca-600">{formatoPrecio(carrito.total)}</span>
           </div>
           <Link href="/carrito" className="text-sm font-semibold text-sky-700 hover:underline">← Editar carrito</Link>
         </aside>

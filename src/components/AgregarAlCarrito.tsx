@@ -36,7 +36,7 @@ export default function AgregarAlCarrito({ jugueteId, stock, logueado, esAdmin }
         <button className={btn} onClick={agregar} disabled={cargando}>{cargando ? "Agregando…" : "🛒 Agregar al carrito"}</button>
       </div>
       {mensaje && (
-        <p className={`text-sm font-semibold ${mensaje.tipo === "ok" ? "text-green-700" : "text-red-600"}`} role="status">
+        <p className={`text-sm font-semibold ${mensaje.tipo === "ok" ? "text-green-700" : "text-rose-600"}`} role="status">
           {mensaje.texto}{" "}
           {mensaje.tipo === "ok" && <button className={`${btnSec} ml-2`} onClick={() => router.push("/carrito")}>Ver carrito</button>}
         </p>

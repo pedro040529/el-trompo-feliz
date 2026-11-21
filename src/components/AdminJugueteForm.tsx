@@ -72,11 +72,11 @@ export default function AdminJugueteForm({ categorias, juguete }: { categorias: 
         <label className={etiqueta} htmlFor="imagenUrl">URL de la imagen (opcional)</label>
         <input id="imagenUrl" name="imagenUrl" type="url" placeholder="https://…" defaultValue={juguete?.imagenUrl} className={input} />
       </div>
-      {error && <p className="text-sm font-semibold text-red-600" role="alert">{error}</p>}
+      {error && <p className="text-sm font-semibold text-rose-600" role="alert">{error}</p>}
       <div className="flex flex-wrap gap-3">
         <button className={btn} disabled={cargando}>{cargando ? "Guardando…" : "Guardar"}</button>
         <button type="button" className={btnSec} onClick={() => router.push("/admin/juguetes")}>Cancelar</button>
-        {juguete && <button type="button" onClick={eliminar} className="ml-auto rounded-xl border border-red-300 px-4 py-2 text-sm font-bold text-red-600 hover:bg-red-50">Eliminar</button>}
+        {juguete && <button type="button" onClick={eliminar} className="ml-auto rounded-xl border border-marca-300 px-4 py-2 text-sm font-bold text-marca-600 hover:bg-marca-50">Eliminar</button>}
       </div>
     </form>
   );
