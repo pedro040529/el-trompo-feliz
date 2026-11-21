@@ -6,6 +6,7 @@ import { Pedido } from "@/models/Pedido";
 import { Juguete } from "@/models/Juguete";
 import { Carrito } from "@/models/Carrito";
 import { ServicioCarrito } from "./ServicioCarrito";
+import { PasarelaStripe } from "./PasarelaStripe";
 
 function numeroPedido() {
   const f = new Date();
@@ -67,5 +68,29 @@ export const ServicioCompra = {
     pedido.set("pago.fecha", new Date());
     await pedido.save();
     await Carrito.updateOne({ cliente: pedido.cliente }, { $set: { items: [] } });
+  },
+
+  /** Crea (o recrea) la sesión de pago de Stripe de un pedido pendiente del cliente. */
+  async iniciarPago(pedidoId: string, clienteId: string) {
+    await conectarDB();
+    const pedido = isValidObjectId(pedidoId) ? await Pedido.findOne({ _id: pedidoId, cliente: clienteId }) : null;
+    if (!pedido) throw new ErrorApp("Pedido no encontrado", 404);
+    if (pedido.estado !== "PENDIENTE") throw new ErrorApp("Este pedido ya fue pagado", 409);
+    const { sessionId, url } = await PasarelaStripe.crearSesion(
+      String(pedido._id),
+      pedido.numero,
+      pedido.items.map((i) => ({ nombre: i.nombre, precioUnitario: i.precioUnitario, cantidad: i.cantidad })),
+    );
+    pedido.set("pago.stripeSessionId", sessionId);
+    await pedido.save();
+    return { id: String(pedido._id), url };
+  },
+
+  /** Consulta a Stripe si la sesión fue pagada y, de ser así, confirma el pedido. */
+  async sincronizarPago(pedidoId: string, sessionId: string) {
+    const r = await PasarelaStripe.consultarSesion(sessionId);
+    if (r.pedidoId !== pedidoId) throw new ErrorApp("La sesión de pago no corresponde al pedido", 400);
+    if (r.pagada) await ServicioCompra.confirmarPago(pedidoId, r.referencia);
+    return r.pagada;
   },
 };

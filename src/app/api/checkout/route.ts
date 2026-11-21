@@ -3,11 +3,17 @@ import { exigirSesion } from "@/lib/auth";
 import { entregaSchema } from "@/lib/validaciones";
 import { ServicioCompra } from "@/services/ServicioCompra";
 
+/** Crea el pedido PENDIENTE y devuelve la URL de pago de Stripe. */
 export async function POST(req: Request) {
   return manejar(async () => {
     const s = await exigirSesion();
     const datos = entregaSchema.parse(await leerJson(req));
-    // El pedido se crea en estado PENDIENTE. El pago con Stripe se conecta aquí (último paso del proyecto).
-    return ServicioCompra.iniciarCompra(s.id, datos);
+    const pedido = await ServicioCompra.iniciarCompra(s.id, datos);
+    try {
+      return await ServicioCompra.iniciarPago(pedido.id, s.id);
+    } catch {
+      // El pedido queda pendiente; el cliente puede reintentar el pago desde su confirmación.
+      return { id: pedido.id, url: null };
+    }
   }, 201);
 }

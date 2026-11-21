@@ -14,10 +14,14 @@ export default function FormCheckout({ nombre, telefono, direccion }: { nombre: 
     const f = new FormData(e.currentTarget);
     setCargando(true);
     setError("");
-    const r = await enviar<{ id: string }>("/api/checkout", "POST", Object.fromEntries(f));
+    const r = await enviar<{ id: string; url: string | null }>("/api/checkout", "POST", Object.fromEntries(f));
     setCargando(false);
     if (!r.ok) {
       setError(r.error);
+      return;
+    }
+    if (r.data.url) {
+      window.location.href = r.data.url; // pago en Stripe
       return;
     }
     router.push(`/confirmacion/${r.data.id}`);
@@ -52,7 +56,7 @@ export default function FormCheckout({ nombre, telefono, direccion }: { nombre: 
         </div>
       </div>
       {error && <p className="text-sm font-semibold text-red-600" role="alert">{error}</p>}
-      <button className={btn} disabled={cargando}>{cargando ? "Generando pedido…" : "Confirmar pedido"}</button>
+      <button className={btn} disabled={cargando}>{cargando ? "Redirigiendo a pago…" : "Pagar con tarjeta"}</button>
     </form>
   );
 }
