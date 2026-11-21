@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# El Trompo Feliz — Tienda virtual de juguetes
 
-## Getting Started
+Tienda en línea de la juguetería **El Trompo Feliz**, que hoy vende en tienda física y redes sociales. El sistema reemplaza los pedidos anotados a mano y el control de stock en hoja de cálculo, evitando ofrecer productos agotados.
 
-First, run the development server:
+## Funcionalidades
+- **Catálogo:** listado de juguetes, búsqueda, filtros por categoría, edad y precio, y página de detalle.
+- **Clientes:** registro, inicio y cierre de sesión.
+- **Carrito:** agregar, quitar y cambiar cantidades, con subtotales, total y validación de stock.
+- **Checkout:** datos de entrega, pago con Stripe (modo pruebas), generación del pedido y descuento de stock.
+- **Pedidos:** historial y estado (Pendiente, Pagado, Enviado, Entregado).
+- **Administración:** juguetes, categorías, stock y pedidos.
 
+## Tecnologías
+| Capa | Tecnología |
+|---|---|
+| Frontend / Backend | Next.js (App Router) + React + TypeScript |
+| Estilos | Tailwind CSS |
+| Base de datos | MongoDB Atlas + Mongoose |
+| Pagos | Stripe (modo pruebas) |
+| Despliegue | Vercel |
+| Gestión | Scrum en Jira (proyecto TROMPO) |
+
+## Requisitos previos
+- Node.js 20 o superior y npm
+- Cuenta de MongoDB Atlas (cluster gratuito)
+- Cuenta de Stripe en modo pruebas
+
+## Instalación
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/pedro040529/el-trompo-feliz.git
+cd el-trompo-feliz
+npm install
+cp .env.example .env.local   # completa las variables
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Ejecución
+```bash
+npm run dev      # desarrollo en http://localhost:3000
+npm run build    # compilación de producción
+npm start        # ejecutar la compilación
+npm run lint     # revisión de código
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estructura del repositorio
+```
+src/
+  app/          páginas (App Router) y rutas API (app/api)
+  components/   componentes React reutilizables
+  services/     lógica de negocio (ServicioCatalogo, ServicioCarrito, ServicioCompra, ...)
+  models/       modelos Mongoose (Juguete, Categoria, Usuario, Carrito, Pedido, ...)
+  lib/          utilidades (conexión a MongoDB, Stripe, autenticación)
+docs/
+  diagramas/    modelo UML (StarUML) y capturas
+  scrum/        evidencias de Scrum (backlog, sprints, burndown)
+public/         archivos estáticos
+```
+La estructura sigue el modelo de diseño en `docs/diagramas`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Integrantes
+| Nombre | Rol |
+|---|---|
+| Pedro Arnaldo Torres Chahua | Product Owner, Scrum Master y Desarrollador |
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Curso TSIV — Universidad San Ignacio de Loyola (USIL).
