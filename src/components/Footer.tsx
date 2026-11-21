@@ -15,7 +15,7 @@ export default function Footer() {
               <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-marca-500 p-1.5"><LogoTrompo className="h-full w-full" /></span>
               El Trompo Feliz
             </p>
-            <p className="text-sm text-white/70">Juguetería con más de una tienda: ahora también en línea. Elige, paga seguro y recibe en casa.</p>
+            <p className="text-sm text-white/70">Tienda virtual de juguetes: elige, paga con tarjeta y sigue el estado de tu pedido.</p>
           </div>
           <div>
             <h3 className="mb-3 text-sm font-extrabold uppercase tracking-wider text-yellow-300">Tienda</h3>
@@ -44,7 +44,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-white/10 py-4 text-center text-xs text-white/60">
-          © {new Date().getFullYear()} El Trompo Feliz · Juguetería · Hecho con ❤️ para jugar
+          © {new Date().getFullYear()} El Trompo Feliz · Juguetería
         </div>
       </div>
     </footer>

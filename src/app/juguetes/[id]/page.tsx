@@ -58,7 +58,7 @@ export default async function DetalleJuguete({ params }: { params: Promise<{ id:
 
           <ul className="grid gap-2 text-sm font-bold text-gray-700 sm:grid-cols-3">
             <li className="rounded-2xl bg-pink-100 px-3 py-2 text-center">🔒 Pago seguro</li>
-            <li className="rounded-2xl bg-sky-100 px-3 py-2 text-center">🚚 Envío a domicilio</li>
+            <li className="rounded-2xl bg-sky-100 px-3 py-2 text-center">🚚 Seguimiento del pedido</li>
             <li className="rounded-2xl bg-green-100 px-3 py-2 text-center">📦 Stock verificado</li>
           </ul>
         </div>

@@ -26,7 +26,7 @@ export default async function Header() {
   return (
     <header className="sticky top-0 z-20 shadow-sm">
       <div className="bg-yellow-300 py-1.5 text-center text-xs font-bold text-tinta">
-        🚚 Envíos a todo Lima &nbsp;·&nbsp; 💳 Pago seguro con tarjeta &nbsp;·&nbsp; 🧸 Stock siempre actualizado
+        💳 Pago seguro con tarjeta &nbsp;·&nbsp; 📦 Stock actualizado &nbsp;·&nbsp; 🔎 Busca y filtra por categoría, edad y precio
       </div>
       <div className="bg-white">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-3 px-4 py-3">

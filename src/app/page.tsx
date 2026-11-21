@@ -33,17 +33,12 @@ export default async function Inicio({ searchParams }: { searchParams: Promise<P
 
   const hayFiltros = Object.values(sp).some(Boolean);
   const nube = "M0 60V36" + "q30-34 60 0".repeat(1) + "t60 0".repeat(23) + "V60z";
-  const buscarCat = (re: RegExp) => categorias.find((c) => re.test(c.nombre));
-  const hrefCat = (re: RegExp) => {
-    const c = buscarCat(re);
-    return c ? `/?categoria=${c.id}#catalogo` : "/#catalogo";
-  };
 
   const beneficios = [
-    { icono: "📦", titulo: "Stock real", texto: "Solo ves lo que sí tenemos.", color: "bg-pink-400" },
-    { icono: "🔒", titulo: "Pago seguro", texto: "Tarjeta con Stripe, sin riesgos.", color: "bg-marca-500" },
-    { icono: "🚚", titulo: "Seguimiento", texto: "Mira el estado de tu pedido.", color: "bg-sky-400" },
-    { icono: "🎂", titulo: "Para cada edad", texto: "Regalos justo a su medida.", color: "bg-green-500" },
+    { icono: "📦", titulo: "Stock real", texto: "El carrito valida la disponibilidad.", color: "bg-pink-400" },
+    { icono: "🔒", titulo: "Pago seguro", texto: "Pagas con tarjeta mediante Stripe.", color: "bg-marca-500" },
+    { icono: "🚚", titulo: "Seguimiento", texto: "Consulta el estado de tus pedidos.", color: "bg-sky-400" },
+    { icono: "🎂", titulo: "Filtra por edad", texto: "Encuentra juguetes para cada edad.", color: "bg-green-500" },
   ];
 
   return (
@@ -111,25 +106,6 @@ export default async function Inicio({ searchParams }: { searchParams: Promise<P
               </div>
             </section>
           )}
-
-          <section className="grid gap-5 md:grid-cols-2" aria-label="Destacados">
-            <Link href={hrefCat(/peluch|mu[ñn]ec/i)} className="group relative flex items-center overflow-hidden rounded-[2rem] bg-gradient-to-r from-orange-200 to-orange-100 p-8 transition hover:shadow-xl">
-              <div className="relative z-10 space-y-3">
-                <p className="text-sm font-extrabold uppercase tracking-widest text-marca-600">Suaves y tiernos</p>
-                <h2 className="font-display text-3xl font-extrabold text-tinta">Peluches y muñecas</h2>
-                <span className="inline-flex items-center gap-2 rounded-full bg-tinta px-5 py-2 text-sm font-extrabold text-white">Ver colección <span aria-hidden="true">→</span></span>
-              </div>
-              <Ilustracion tipo="oso" className="absolute -right-2 bottom-[-18px] h-48 w-48 transition duration-300 group-hover:scale-105 sm:h-56 sm:w-56" />
-            </Link>
-            <Link href={hrefCat(/educa/i)} className="group relative flex items-center overflow-hidden rounded-[2rem] bg-gradient-to-r from-green-200 to-lime-100 p-8 transition hover:shadow-xl">
-              <div className="relative z-10 space-y-3">
-                <p className="text-sm font-extrabold uppercase tracking-widest text-green-700">Aprende jugando</p>
-                <h2 className="font-display text-3xl font-extrabold text-tinta">Juegos educativos</h2>
-                <span className="inline-flex items-center gap-2 rounded-full bg-tinta px-5 py-2 text-sm font-extrabold text-white">Descubrir <span aria-hidden="true">→</span></span>
-              </div>
-              <Ilustracion tipo="rompecabezas" className="absolute -right-2 bottom-[-18px] h-48 w-48 transition duration-300 group-hover:scale-105 sm:h-56 sm:w-56" />
-            </Link>
-          </section>
 
           <section id="edades" className="scroll-mt-40 space-y-6">
             <div className="text-center">
