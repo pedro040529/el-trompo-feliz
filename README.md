@@ -30,8 +30,17 @@ Tienda en línea de la juguetería **El Trompo Feliz**, que hoy vende en tienda 
 git clone https://github.com/pedro040529/el-trompo-feliz.git
 cd el-trompo-feliz
 npm install
-cp .env.example .env.local   # completa las variables
+cp .env.example .env.local   # completa las variables (ver abajo)
+npm run seed                 # crea categorías, juguetes de ejemplo y el usuario administrador
 ```
+
+### Variables de entorno (`.env.local`)
+| Variable | Descripción |
+|---|---|
+| `MONGODB_URI` | Cadena de conexión de MongoDB Atlas (incluye el nombre de la base, p. ej. `/trompo`) |
+| `AUTH_SECRET` | Secreto para firmar la sesión (mínimo 16 caracteres) |
+| `ADMIN_EMAIL` / `ADMIN_PASSWORD` | Credenciales del administrador que crea `npm run seed` |
+| `STRIPE_SECRET_KEY` / `STRIPE_WEBHOOK_SECRET` | Claves de Stripe en modo pruebas (pago con tarjeta) |
 
 ## Ejecución
 ```bash
@@ -39,6 +48,7 @@ npm run dev      # desarrollo en http://localhost:3000
 npm run build    # compilación de producción
 npm start        # ejecutar la compilación
 npm run lint     # revisión de código
+npm run seed     # datos iniciales (categorías, juguetes y administrador)
 ```
 
 ## Estructura del repositorio
@@ -48,7 +58,8 @@ src/
   components/   componentes React reutilizables
   services/     lógica de negocio (ServicioCatalogo, ServicioCarrito, ServicioCompra, ...)
   models/       modelos Mongoose (Juguete, Categoria, Usuario, Carrito, Pedido, ...)
-  lib/          utilidades (conexión a MongoDB, Stripe, autenticación)
+  lib/          utilidades (conexión a MongoDB, autenticación, validaciones, constantes)
+scripts/        seed.ts: datos iniciales
 docs/
   diagramas/    modelo UML (StarUML) y capturas
   scrum/        evidencias de Scrum (backlog, sprints, burndown)
