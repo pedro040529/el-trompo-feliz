@@ -1,4 +1,10 @@
 import mongoose from "mongoose";
+// Registra todos los modelos: en serverless cada ruta arranca por separado y populate() los necesita.
+import "@/models/Usuario";
+import "@/models/Categoria";
+import "@/models/Juguete";
+import "@/models/Carrito";
+import "@/models/Pedido";
 
 type Cache = { conn?: typeof mongoose; promise?: Promise<typeof mongoose> };
 const globalCache = globalThis as unknown as { _mongoose?: Cache };

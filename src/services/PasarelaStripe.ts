@@ -10,7 +10,16 @@ function stripe() {
   return cliente;
 }
 
-export function urlBase() {
+/** Dirección pública de la tienda, tomada de la propia petición (funciona en local y en Vercel). */
+export function urlBase(req?: Request) {
+  if (req) {
+    const h = req.headers;
+    const host = h.get("x-forwarded-host") ?? h.get("host");
+    if (host) {
+      const proto = h.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
+      return `${proto.split(",")[0]}://${host.split(",")[0]}`;
+    }
+  }
   return (process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000").replace(/\/$/, "");
 }
 
@@ -22,7 +31,7 @@ export interface ItemPago {
 
 /** Pasarela de pago: encapsula Stripe (modo sandbox con claves sk_test_). */
 export const PasarelaStripe = {
-  async crearSesion(pedidoId: string, numero: string, items: ItemPago[]) {
+  async crearSesion(pedidoId: string, numero: string, items: ItemPago[], base: string) {
     const sesion = await stripe().checkout.sessions.create({
       mode: "payment",
       line_items: items.map((i) => ({
@@ -35,8 +44,8 @@ export const PasarelaStripe = {
       })),
       client_reference_id: pedidoId,
       metadata: { pedidoId, numero },
-      success_url: `${urlBase()}/confirmacion/${pedidoId}?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${urlBase()}/confirmacion/${pedidoId}?pago=cancelado`,
+      success_url: `${base}/confirmacion/${pedidoId}?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${base}/confirmacion/${pedidoId}?pago=cancelado`,
     });
     if (!sesion.url) throw new ErrorApp("No se pudo iniciar el pago", 502);
     return { sessionId: sesion.id, url: sesion.url };

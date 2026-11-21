@@ -71,7 +71,7 @@ export const ServicioCompra = {
   },
 
   /** Crea (o recrea) la sesión de pago de Stripe de un pedido pendiente del cliente. */
-  async iniciarPago(pedidoId: string, clienteId: string) {
+  async iniciarPago(pedidoId: string, clienteId: string, base: string) {
     await conectarDB();
     const pedido = isValidObjectId(pedidoId) ? await Pedido.findOne({ _id: pedidoId, cliente: clienteId }) : null;
     if (!pedido) throw new ErrorApp("Pedido no encontrado", 404);
@@ -80,6 +80,7 @@ export const ServicioCompra = {
       String(pedido._id),
       pedido.numero,
       pedido.items.map((i) => ({ nombre: i.nombre, precioUnitario: i.precioUnitario, cantidad: i.cantidad })),
+      base,
     );
     pedido.set("pago.stripeSessionId", sessionId);
     await pedido.save();
